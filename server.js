@@ -4,33 +4,25 @@ var app = express();
 var querystring = require('querystring');
 var https = require('https');
 
-var host = 'www.thegamecrafter.com';
-var sessionId = null;
-var deckId = '68DC5A20-EE4F-11E2-A00C-0858C0D5C2ED';
-
+var host = 'api2.iheart.com';
 
 function performRequest(endpoint, method, data, success) {
   var dataString = JSON.stringify(data);
   var headers = {};
 
-  if (method == 'GET') {
-    endpoint += '?' + querystring.stringify(data);
-    console.log("Endpoint is ", endpoint);
-  }
-  else {
-    headers = {
-      'Content-Type': 'application/json',
-      'Content-Length': dataString.length
-    };
-  }
+  endpoint += '?' + querystring.stringify(data);
+  console.log("Endpoint is ", endpoint);
+  headers = {
+    'Content-Type': 'application/json',
+  };
+
   var options = {
     host: host,
     path: endpoint,
-    method: method,
     headers: headers
   };
 
-  var req = https.request(options, function(res) {
+  var req = https.get(options, function(res) {
     res.setEncoding('utf-8');
 
     var responseString = '';
@@ -41,30 +33,35 @@ function performRequest(endpoint, method, data, success) {
     });
 
     res.on('end', function() {
-      console.log("responseString --->", responseString);
       var responseObject = JSON.parse(responseString);
       success(responseObject);
+      req.end();
     });
   });
-
-  req.write(dataString);
-  req.end();
 }
 
-function getCards() {
-  performRequest('/api/pokerdeck/' + deckId + '/cards', 'GET', {
-    session_id: sessionId,
-    "_items_per_page": 100
+app.get('/data', function(req, res){
+  performRequest('/api/v1/catalog/searchAll/', 'GET', {
+    keywords: 'taylor',
+    queryTrack: false,
+    queryBundle: false,
+    queryArtist: true,
+    queryStation: false,
+    queryFeatureStation: false,
+    queryTalkShow: false,
+    queryTalkTheme: false,
+    queryKeyword: false,
+    countryCode: 'US'
   }, function(data) {
-    console.log("The data in getCards() is ", data);
-    console.log('Fetched ' + data.result.items[0].back_size);
+    res.send(data);
   });
-}
+});
+
+app.use(express.static('src/webapp'));
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 });
 
-getCards();
 
 

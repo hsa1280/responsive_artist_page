@@ -1,12 +1,15 @@
-<style type="text/css">
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-</style>
-
-<div ng-repeat="artist in artistController.dataList">
-    <img src="{{artist.image}}" width="250">
-    <p>{{artist.name}}</p>
-    <p>{{artist.description}}</p>
+<div class="row">
+    <div class="col-1-3" ng-repeat="artist in artistController.dataList">
+        <img src="{{artist.image}}"> <br>
+        <span>{{artist.name}} </span> <br>
+        {{artist.description}} <br> <br>
+    </div>
 </div>
+
+test data:
+
+{{artistController.testData}}
+
+
+
+
