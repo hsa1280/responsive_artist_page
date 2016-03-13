@@ -8,7 +8,6 @@ function artistStateProvider($stateProvider) {
             views: {
                 'content': {
                     templateUrl: '/src/webapp/views/artist.html',
-                    //Need to know if I need this
                     controller: 'artistController as artistController'
                 }
             }
