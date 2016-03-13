@@ -1,19 +1,16 @@
-const annotation = ['$stateProvider'];
+'use strict';
 
-function artistStateProvider($stateProvider) {
-    console.log('in state provider');
+module.exports = function ($stateProvider) {
     $stateProvider.
-        state('artist', {
+        state('main.artist', {
             url: '/artist',
+            parent: 'main',
             views: {
-                'content': {
-                    templateUrl: 'src/webappviews/artist.html',
-                    //Need to know if I need this
+                'content@': {
+                    templateUrl: 'views/artist.html',
+                                            //Need to know if I need this
                     controller: 'artistController as artistController'
                 }
             }
-        })
+        });
 }
-
-artistStateProvider.$inject = annotation;
-export default artistStateProvider;
