@@ -1,4 +1,5 @@
 node_modules/
 .idea/
 responsive_artist_page.iml
+src/webapp/dist/
 
