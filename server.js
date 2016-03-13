@@ -11,7 +11,6 @@ function performRequest(endpoint, method, data, success) {
   var headers = {};
 
   endpoint += '?' + querystring.stringify(data);
-  console.log("Endpoint is ", endpoint);
   headers = {
     'Content-Type': 'application/json',
   };
@@ -42,7 +41,7 @@ function performRequest(endpoint, method, data, success) {
 
 app.get('/data', function(req, res){
   performRequest('/api/v1/catalog/searchAll/', 'GET', {
-    keywords: 'taylor',
+    keywords: req.query.word,
     queryTrack: false,
     queryBundle: false,
     queryArtist: true,

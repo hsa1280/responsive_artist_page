@@ -4,7 +4,7 @@ function dataService($http) {
 
     return {
         getData: function() {
-            return $http.get('/data').then(response => response.data);
+            return $http.get("/data", {params: {word: 'taylor'}}).then(response => response.data);
         }
     }
 }
