@@ -1,4 +1,5 @@
-
-<div>{{artistController.name}}</div>
-<button ng-click="artistController.getData()">Get Data</button>
-{{artistController.dataList}}
+<div ng-repeat="artist in artistController.dataList">
+    <img src="{{artist.image}}">
+    <p>{{artist.name}}</p>
+    <p>{{artist.description}}</p>
+</div>

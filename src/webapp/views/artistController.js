@@ -5,11 +5,12 @@ class artistController {
         this.name = 'shian';
         this.dataList = null;
         this.dataService = dataService;
+        this.getData();
     }
 
     getData() {
         this.dataService.getData().then( data => {
-            this.dataList = data;
+            this.dataList = data.dataList;
         });
     }
 }
