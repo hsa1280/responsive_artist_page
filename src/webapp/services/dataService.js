@@ -3,8 +3,8 @@ const annotation = ['$http'];
 function dataService($http) {
 
     return {
-        getData: function() {
-            return $http.get("/data", {params: {word: 'taylor'}}).then(response => response.data);
+        getData: function(keyword) {
+            return $http.get("/data", {params: {word: keyword}}).then(response => response.data);
         }
     }
 }

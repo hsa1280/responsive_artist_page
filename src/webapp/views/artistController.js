@@ -2,46 +2,50 @@ const annotation = ['dataService']
 
 class artistController {
     constructor(dataService) {
+
+    "http://iscale.iheart.com/catalog/artist/744880?ops=fit(250,0)"
         this.dataList = [
             {
-              "name": "The Weeken",
+              "artistName": "The Weeken",
               "description": "Feat. August Alsina, Jeremih and more",
-              "image": "http://iscale.iheart.com/catalog/artist/744880?ops=fit(250,0)"
+              "artistId": "744880"
             },
             {
-              "name": "Selena Gomez",
+              "artistName": "Selena Gomez",
               "description": "Feat. Ariana Grande, Demi Lovato and more",
-              "image": "http://iscale.iheart.com/catalog/artist/57706?ops=fit(250,0)"
+              "artistId": "57706"
             },
             {
-              "name": "R. City",
+              "artistName": "R. City",
               "description": "Feat. Nelly, lyaz, Wiz Khalifa and more",
-              "image": "http://iscale.iheart.com/catalog/artist/30005067?ops=fit(250,0)"
+              "artistId": "30005067"
             },
             {
-              "name": "Justin Bieber",
+              "artistName": "Justin Bieber",
               "description": "Feat. Shawn Mendes, One Direction and more",
-              "image": "http://iscale.iheart.com/catalog/artist/44368?ops=fit(250,0)"
+              "artistId": "44368"
             },
             {
-              "name": "Major Lazer",
+              "artistName": "Major Lazer",
               "description": "Feat. lyaz, Dillon Francis & DJ Snake and more",
-              "image": "http://iscale.iheart.com/catalog/artist/43557?ops=fit(250,0)"
+              "artistId": "43557"
             },
             {
-              "name": "Taylor Swift",
+              "artistName": "Taylor Swift",
               "description": "Feat. Meghan Trainor, Katy Perry and more",
-              "image": "http://iscale.iheart.com/catalog/artist/33221?ops=fit(250,0)"
+              "artistId": "33221"
             }
         ]
         this.dataService = dataService;
         this.testData = null;
-        this.getData();
+        this.keyword = '';
+        this.imageUrlPrefix = "http://iscale.iheart.com/catalog/artist/";
+        this.imageUrlPostfix = "?ops=fit(250,0)";
     }
 
     getData() {
-        this.dataService.getData().then( data => {
-            this.testData = data.artists;
+        this.dataService.getData(this.keyword).then( data => {
+            this.dataList = data.artists;
         });
     }
 }
