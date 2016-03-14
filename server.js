@@ -27,7 +27,6 @@ function performRequest(endpoint, method, data, success) {
     var responseString = '';
 
     res.on('data', function(data) {
-      console.log("data in res.on() ---> ", data);
       responseString += data;
     });
 
@@ -56,10 +55,11 @@ app.get('/data', function(req, res){
   });
 });
 
+//serve static folder
 app.use(express.static('src/webapp'));
 
 app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
+  console.log('App listening on port 3000!');
 });
 
 

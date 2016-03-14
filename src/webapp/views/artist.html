@@ -5,6 +5,9 @@
         {{artist.description}} <br> <br>
     </div>
 </div>
+<div ng-if="artistController.dataList.length === 0">
+    No results matched your search!
+</div>
 
 <input ng-model="artistController.keyword">
 <button ng-click="artistController.getData()">Search</button>
