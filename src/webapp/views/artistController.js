@@ -2,8 +2,6 @@ const annotation = ['dataService']
 
 class artistController {
     constructor(dataService) {
-
-    "http://iscale.iheart.com/catalog/artist/744880?ops=fit(250,0)"
         this.dataList = [
             {
               "artistName": "The Weeken",
@@ -37,7 +35,6 @@ class artistController {
             }
         ]
         this.dataService = dataService;
-        this.testData = null;
         this.keyword = '';
         this.imageUrlPrefix = "http://iscale.iheart.com/catalog/artist/";
         this.imageUrlPostfix = "?ops=fit(250,0)";
