@@ -55,7 +55,7 @@ app.get('/data', function(req, res){
   });
 });
 
-//serve static folder
+//serve static folder, localhost:3000 points to src/webapp,
 app.use(express.static('src/webapp'));
 
 app.listen(3000, () => {
