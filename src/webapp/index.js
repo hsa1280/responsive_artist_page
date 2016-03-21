@@ -9,5 +9,8 @@ import 'angular-ui-router';
 import artist from './views/index';
 import dataService from './services/index'
 
-export default angular.
-    module('artistApp', [ 'ui.router', artist.name, dataService.name ]);
+var artistApp = angular.module('artistApp', [ 'ui.router', artist.name, dataService.name ]);
+
+export default artistApp.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise("/artist");
+});
