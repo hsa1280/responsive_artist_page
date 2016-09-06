@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+var port = process.env.PORT || 3000;
 
 var querystring = require('querystring');
 var https = require('https');
@@ -7,9 +8,9 @@ var https = require('https');
 var host = 'api2.iheart.com';
 
 function performRequest(endpoint, method, data, success) {
-  var dataString = JSON.stringify(data);
   var headers = {};
 
+  //convert javascript object to query string
   endpoint += '?' + querystring.stringify(data);
   headers = {
     'Content-Type': 'application/json',
@@ -58,9 +59,6 @@ app.get('/data', function(req, res){
 //serve static folder, localhost:3000 points to src/webapp,
 app.use(express.static('src/webapp'));
 
-app.listen(3000, () => {
-  console.log('App listening on port 3000!');
+app.listen(port, () => {
+  console.log('App listening on port ' + port);
 });
-
-
-
